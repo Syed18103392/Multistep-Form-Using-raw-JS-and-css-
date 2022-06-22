@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+
+<body class="">
+    <div class="multistepFormContainer">
+        <div class="formContainer">
+            <div class="containerLeft">
+                <div class="buttons">
+                    <ul class="button-list">
+                        <li class="step_one activeButton">Välj Tjänst</li>
+                        <li class="step_two">Datum & Tid</li>
+                    </ul>
+                </div>
+                <div class="boxContainer" data-step=1>
+                    <!-- NOTE first step  -->
+                    <div class="mainContainer ">
+
+                        <div class="title">
+                            <h2>Lämna specifika önskemål inför städningen</h2>
+                            <p>BÖRJA GENOM ATT VÄLJA STORLEKEN PÅ DITT HEM</p>
+                        </div>
+                        <div class="inputFieldArea form_fields">
+                            <input type="text">
+                            <div class="mesurementContainer">m²</div>
+                        </div>
+                        <div class="cleaningDurationFieldsContainer hidden">
+                            <div class="title">
+                                <p>BÖRJA GENOM ATT VÄLJA STORLEKEN PÅ DITT HEM</p>
+                            </div>
+                            <div class="inputSelectFieldArea">
+                                <select class="cleaningDurationForm" aria-invalid="false" id="duration">
+                                    <option value="" disabled=""></option>
+                                    <option value="4.5">4.5 timmar (rekommendation)</option>
+                                    <option value="5">5 timmar</option>
+                                    <option value="5.5">5.5 timmar</option>
+                                    <option value="6">6 timmar</option>
+                                    <option value="6.5">6.5 timmar</option>
+                                    <option value="7">7 timmar</option>
+                                    <option value="7.5">7.5 timmar</option>
+                                    <option value="8">8 timmar</option>
+                                </select>
+                                <img class="formSelectFieldArrow" src="https://www.drott24.se/wp-content/uploads/2022/06/down-arrow.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="hurText">
+                            <p>HUR OFTA SKA VI STÄDA?</p>
+                        </div>
+                        <div class="bokaText">
+                            <p>Boka nu och betala sen med Klarna!</p>
+                        </div>
+                        <div class="cardContainer service__Card--Container">
+                            <!-- <div class="card active">
+                                <div class="left">
+                                    <p class="title">Varje vecka</p>
+                                    <p class="subtitle">510 kr/h innan rutavdraget</p>
+                                </div>
+                                <div class="right">
+                                    <div class="cardPrice">255 kr/h</div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="left">
+                                    <p class="title">Varje vecka</p>
+                                    <p class="subtitle">510 kr/h innan rutavdraget</p>
+                                </div>
+                                <div class="right">
+                                    <div class="cardPrice">255 kr/h</div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="left">
+                                    <p class="title">Varje vecka</p>
+                                    <p class="subtitle">510 kr/h innan rutavdraget</p>
+                                </div>
+                                <div class="right">
+                                    <div class="cardPrice">255 kr/h</div>
+                                </div>
+                            </div>
+                            <div class="checkBoxContainer card">
+                                <input type="radio" name="onetimeonly" id="one">
+                                <label for="one">Endast en gång (322.5 kr/h)<br><span>645 kr/h innan rutavdraget</span></label>
+                            </div> -->
+                        </div>
+                        
+                        <div class="oneTileServiceContainer hidden extra__service--wrapper">
+                            <p>
+                            Vi rekommenderar regelbunden städning. Vid regelbunden städning kan vi boka in dig med samma städare varje gång.
+                            </p>
+                            <div class="additionalService">
+                                <div class="title">
+                                    <div class="hurText">
+                                        <p>HUR OFTA SKA VI STÄDA?</p>
+                                    </div>
+                                    <div class="bokaText">
+                                        <p>Boka nu och betala sen med Klarna!</p>
+                                    </div>
+                                </div>
+                                <div class="additionServiceCardContainer">
+                                <!-- <div class="card">
+                                    <div class="left">
+                                        <p class="title">Varje vecka</p>
+                                        <p class="subtitle">510 kr/h innan rutavdraget</p>
+                                    </div>
+                                    <div class="right">
+                                        <div class="cardImageContainer">
+                                            <img src="freez.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="cardActiveTikMarkContainer hidden">
+                                        <img src="tikmark.svg" alt="">
+                                    </div>
+                                </div> -->
+                                </div>
+    
+                            </div>
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <!-- NOTE Second Step Form  -->
+                    <div class="second--mainContainer hidden">
+                        <div class="title">
+                            <h2>Var ska vi städa? </h2>
+                        </div>
+                        <div class="address--container form_fields">
+                            <div class="address">
+                                <input type="text" class="addressinput" placeholder="Street Address">
+                            </div>
+                            <div class="postcodeContainer">
+                                <input type="text" class="postcode"  placeholder="Post Code" >
+                                
+                            </div>
+                        </div>
+                        <div class="petsContainer">
+                            <div class="checkboxForPet form_fields">
+                                <div class="checkBoxContainer pet--checkbox__conatainer ">
+                                    <input type="checkbox" name="pet" id="pet">
+                                    <label for="pet">Husdjur finns i hemmet</span></label>
+                                </div>
+                                <div class="petList hidden">
+                                    <div class="subtitle">
+                                        <p>Vilket typ av djur? Så att vi kan välja ut en städare som inte är allergisk.</p>
+                                    </div>
+                                    <div class="checkBoxContainer cat--class form_fields">
+                                        <input type="checkbox" name="cat" id="cat">
+                                        <label for="cat">Katt</span></label>
+                                    </div>
+                                    <div class="checkBoxContainer dog--class form_fields">
+                                        <input type="checkbox" name="dog" id="dog">
+                                        <label for="dog">Hund</span></label>
+                                    </div>
+                                    <div class="checkBoxContainer otherpet--class form_fields">
+                                        <input type="checkbox" name="otehrpet" id="otherpet">
+                                        <label for="otherpet">Annat djur</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn">
+                                <button class="submit-pet">Visa tillgänglighet</button>
+                            </div>
+                            <div class="errMessage"></div>
+                        </div>
+                    </div>
+
+                    <!-- //NOTE ending point -->
+                </div>
+                <div class="containerCardStyle second--mainContainer__second hidden">
+                    <div class="second--mainContainer ">
+                        <div class="title">
+                            <h2>När kan vi städa? </h2>
+                            <p>Inget inlåsningsavtal – inget åtagande!</p>
+                        </div>
+                        <div class="correctDateTimeWarningBoard">
+                            <div class="icon">
+                                
+                            </div>
+                            <p class="bodyText">Vi behöver din adress först – ta reda på när vi är i ditt område.</p>
+                        </div>
+                        <div class="inputFieldsForDateTimeWrapper form_fields hidden">
+                            <div class="inputSelectFieldArea">
+                                <select class="for_date" aria-invalid="false" id="duration">
+                                    <option value="" disabled selected>Välj Datum</option>
+                                    <option value="saterday">lördag</option>
+                                    <option value="sunday">söndag</option>
+                                    <option value="monday">måndag</option>
+                                    <option value="tuesday">tisdag</option>
+                                    <option value="wednesday">onsdag</option>
+                                    <option value="thusday">torsdag</option>
+                                    <option value="friday">fredag</option>
+                                </select>
+                                <img class="formSelectFieldArrow" src="https://www.drott24.se/wp-content/uploads/2022/06/down-arrow.svg" alt="">
+                            </div>
+                            <div class="inputSelectFieldArea">
+                                <select class="for_time" aria-invalid="false" id="duration">
+                                    <option value="" disabled selected>Välj tid</option>
+                                    <option value="am">AM</option>
+                                    <option value="pm">PM</option>
+                                </select>
+                                <img class="formSelectFieldArrow" src="https://www.drott24.se/wp-content/uploads/2022/06/down-arrow.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="containerCardStyle second--mainContainer__third hidden">
+                    <div class="second--mainContainer ">
+                        <div class="title">
+                            <h2>Nästan där... </h2>
+                            <p>Vårt engagerade kundvårdsteam är alltid här för att hjälpa och kommer att se till att du är 100 % nöjd!</p>
+                        </div>
+                        <div class="inputFieldsWrapper form_fields">
+                            <input class="form_firstName" type="text" placeholder="Förnamn">
+                            <input class="form_lastName" type="text" placeholder="Efternamn">
+                            <input class="form_email" type="text" placeholder="E-post">
+                            <input class="form_phone" type="text" placeholder="Telefon">
+                            <input class="form_personalIdentity" type="text" placeholder="Personnummer">
+                        </div>
+                        <div class="summeryBox">
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <div class="previousNextButtonContainer">
+                    <div class="previous">
+                        <button class="previous"></button>
+                    </div>
+                    <div class="next">
+                        <button class="next"></button>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="containerRight">
+                <div class="card-container">
+                    <div class="top-area">
+                        <div class="firstText">
+                            <h6>HEMSTÄDNING</h6>
+                        </div>
+                        <div class="secondText">
+                            <h2><span class="total__price--main">0</span> kr</h2>
+                        </div>
+                        <div class="thirdText">
+                            <p>innan rut-avdraget
+                                <span class="boldText"><span class="total__price--old">0</span> kr</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bottom-area">
+                        <div class="left">
+                            <table>
+                                <tbody>
+                                    <tr class="header-row serviceCardTitleRow">
+                                        <td>
+                                            <p class="title">Städlängd</p>
+                                        </td>
+                                        <td>
+                                            <p class="hour">0 h</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="extraFeatureRow hidden">
+                                        <td>
+                                            <span class="iconContainer">+</span><span class="textContainer">+ <span class="extraMinuteValuePreview">30</span> min extra</span><span class="queryText">?</span>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="extraFeatureRowsecond hidden">
+                                        <td>
+                                            <span class="iconContainer">+</span><span class="textContainer">Städmaterial</span><span class="queryText">?</span>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="userInfoPreview hidden">
+                                        <td>
+                                            <span class="iconContainer">
+                                                <div class="icon">
+                                                   
+                                                </div>
+                                            </span>
+                                            <span class="infoContainer"> 
+                                                <span class="userNamePreview"> 
+                                                    <span class="p_firstName"></span>
+                                                    <span class="p_lastName"></span>
+                                                </span>
+                                                <span class="p_email"></span>
+                                                <span class="p_phone"></span>
+                                                <span class="p_personalIdentity"></span>
+                                            </span> 
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="dateTimePreview hidden">
+                                        <td>
+                                            <span class="iconContainer">+</span>
+                                            <span class="dateTimerContainer"> 
+                                                    <span class="p_date"></span>
+                                                    <span class="p_time"></span>
+                                            </span> 
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="addressListPreview hidden">
+                                        <td>
+                                            <span class="iconContainer">
+                                                <div class="icon">
+                                                    
+                                                </div>
+                                            </span>
+                                            <span class="addressPreview">  </span> , 
+                                            <span class="postcodePreview">  </span>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="petListRow hidden">
+                                        <td>
+                                            <span class="iconContainer">
+                                                <div class="icon">
+                                                    
+                                                </div>
+                                            </span> 
+                                            <span class="catName hidden"> katt </span> 
+                                            <span class="dogName hidden"> hund </span> 
+                                            <span class="otherpetName hidden"> annat husdjur </span>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>  
+                        </div>
+                        <div class="right">
+                        </div>
+                    </div>
+                    <div class="bottom-bottom-area hidden">
+                        <table>
+                            <tbody>
+                                <tr class="rowOne tableTitle ">
+                                    <td class="bottom_area_regular_summery--title">Städning 510 kr/h × 0.5 h</td>
+                                    <td><span class="bottom_area_regular_summery--price">255</span> kr</td>
+                                </tr>
+                                <tr class="rowTwo tableTitle">
+                                    <td >Svanenmärkta rengöringsmedel</td>
+                                    <td><span class="eco-friendly-cleaning-supplies">39</span> kr</td>
+                                </tr>
+                                <tr class="rowThree summery">
+                                    <td><a href="#">Innan RUT-avdraget</a></td>
+                                    <td><span class="bottom_area_regular_summery--priceWithCharge"></span> kr</td>
+                                </tr>
+                                <tr class="rowFourth">
+                                    <td>TOTALT</td>
+                                    <td><span class="bottom_area_current_summery--priceWithCharge"></span> kr</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <textarea class="finalAllDataArea" name="" id="" cols="30" rows="10"></textarea>
+    </div>
+
+    <!-- //NOTE Load JS -->
+
+    <script  src="script.js"></script>
+</body>
+
+</html>
