@@ -1,43 +1,69 @@
+/* //////////////////multiform */
+.multistepFormContainer {
+    margin: 10px;
+}
 
-:focus-visible {
-    outline: transparent auto 0px;
+input#datepicker {
+    border: none;
 }
-.hidden{
-    display: none !important;
-}
-button.submit-pet:disabled {
-    background: #ccc !important;
-}
-table{
-    width: 100%;
-}
-td {
-    display: flex;
-    align-items: center;
-}
-tr {
-    display: flex;
-    justify-content: space-between;
-}
+
 form.heading--Search_Form {
     display: flex;
     max-width: 600px;
     align-items: center;
     border: 1px solid #ccc;
-    padding: 5px;
+    padding: 5px 10px;
     border-radius: 100px;
     margin: auto;
+    overflow: hidden;
+    background: #fff;
 }
+
+.mesurementContainer {
+    padding-right: 10px;
+}
+
 .heading--Search_Form .inputFieldArea {
     padding: 0;
     margin: 0;
     border-radius: 0;
     border: transparent;
 }
+
 .input-area-measurement.inputFieldArea {
     border-right: 1px solid;
 }
 
+
+button.submit-pet:disabled {
+    background: #ccc !important;
+}
+
+:focus-visible {
+    outline: transparent 0px;
+}
+
+.form_fields input[type=text] {
+    width: 80%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    display: flex;
+    align-items: center;
+}
+
+tr {
+    display: flex;
+    justify-content: space-between;
+}
 
 .formContainer {
     display: flex;
@@ -45,25 +71,23 @@ form.heading--Search_Form {
     margin: auto;
     justify-content: center;
     flex-wrap: wrap;
-    column-gap: 30px;
+    column-gap: 40px;
 }
+
 .formContainer>div:nth-child(2) {
     width: 410px;
-        position: -webkit-sticky !important;
-        position: sticky !important;
-        top: 10px;
 }
+
 .containerLeft {
     width: 660px;
 }
-.form_fields input[type=text]{
-    width: 80%;
-}
-.containerCardStyle,.boxContainer {
+
+.containerCardStyle,
+.boxContainer {
     border-radius: 20px;
-    padding-top: clamp(32px, calc(2rem + ((1vw - 4.14px) * 4.5326)), 64px) ;
-    padding-bottom: clamp(32px, calc(2rem + ((1vw - 4.14px) * 4.5326)), 64px) ;
-    padding-left:  clamp(48px, calc(3rem + ((1vw - 4.14px) * 6.7989)), 96px);
+    padding-top: clamp(32px, calc(2rem + ((1vw - 4.14px) * 4.5326)), 64px);
+    padding-bottom: clamp(32px, calc(2rem + ((1vw - 4.14px) * 4.5326)), 64px);
+    padding-left: clamp(48px, calc(3rem + ((1vw - 4.14px) * 6.7989)), 96px);
     padding-right: clamp(48px, calc(3rem + ((1vw - 4.14px) * 6.7989)), 96px);
     margin-top: 32px;
     background-color: rgb(255, 255, 255);
@@ -79,7 +103,7 @@ form.heading--Search_Form {
     font-size: clamp(25px, calc(1.5625rem + ((1vw - 4.14px) * 1.4164)), 35px);
     font-weight: 900;
     line-height: 1;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     text-align: center;
     color: inherit;
     transition: all 0.15s ease 0s;
@@ -94,7 +118,7 @@ form.heading--Search_Form {
     line-height: 1.33;
     letter-spacing: 1px;
     text-transform: uppercase;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     text-align: center;
     display: block;
     padding-bottom: 16px;
@@ -102,9 +126,9 @@ form.heading--Search_Form {
 
 .inputFieldArea {
     width: 100%;
-    font-size:clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
+    font-size: clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
     line-height: 1.4375em;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     font-weight: 400;
     color: rgb(33, 37, 43);
     box-sizing: border-box;
@@ -120,7 +144,8 @@ form.heading--Search_Form {
     border-radius: 8px;
     margin-bottom: 48px;
 }
-.form_fields input{
+
+.form_fields input {
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(218, 219, 227);
     border-radius: 8px;
@@ -136,37 +161,44 @@ form.heading--Search_Form {
     animation-duration: 10ms;
     padding: 25px 0px 8px 12px;
     padding: 16px;
-    font-size:clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);   
-    margin-bottom: 10px; 
+    font-size: clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
+    margin-bottom: 10px;
 }
+
 .checkBoxContainer.pet--checkbox__conatainer {
     display: flex;
     align-items: center;
 }
-.checkBoxContainer.pet--checkbox__conatainer input{
+
+.checkBoxContainer.pet--checkbox__conatainer input {
     margin-bottom: 0;
 }
+
 .checkboxForPet.form_fields {
     background-color: rgb(240, 241, 244);
     border-radius: 8px;
     margin-bottom: 24px;
     padding: 8px 16px;
 }
+
 .checkBoxContainer.form_fields {
     display: flex;
     align-items: center;
 }
+
 .address--container.form_fields {
     display: flex;
     column-gap: 20px;
 }
+
 .correctDateTimeWarningBoard {
-    background-color: rgb(233, 245, 249);
+    background-color: rgb(240, 241, 244);
     text-align: center;
     border-radius: 20px;
     padding-top: 32px;
     padding-bottom: 32px;
 }
+
 .title h2 {
     margin: 0px;
     font-size: clamp(25px, calc(1.5625rem + ((1vw - 4.14px) * 1.4164)), 35px);
@@ -176,33 +208,45 @@ form.heading--Search_Form {
     color: inherit;
     transition: all 0.15s ease 0s;
 }
+
+.hurText {
+    margin-top: 32px;
+}
+
 .title p {
     margin: 0px;
     font-size: clamp(12px, calc(0.75rem + ((1vw - 4.14px) * 0.7082)), 17px);
     line-height: 1.41;
     font-family: "Nunito Sans", Helvetica, sans-serif;
     font-weight: 400;
-    margin-top: 20px;
+    margin-top: 5px;
     text-align: center;
     padding-bottom: 24px;
+    margin-bottom: 25px;
 }
+
 .inputFieldsWrapper.form_fields {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
- .previousNextButtonContainer div.previous {
-     justify-content: start;
- }
-.inputFieldsWrapper.form_fields input{
+
+.previousNextButtonContainer div.previous {
+    justify-content: start;
+}
+
+.inputFieldsWrapper.form_fields input {
     width: 100%;
 }
+
 .inputFieldsWrapper.form_fields input.form_firstName {
     width: 40%;
 }
- .inputFieldsWrapper.form_fields input.form_lastName {
+
+.inputFieldsWrapper.form_fields input.form_lastName {
     width: 40%;
 }
+
 .inputFieldArea input {
     font: inherit;
     letter-spacing: inherit;
@@ -220,9 +264,10 @@ form.heading--Search_Form {
     animation-duration: 10ms;
     padding: 25px 0px 8px 12px;
     padding: 16px;
-    font-size:clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
+    font-size: clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
 
 }
+
 .mesurementContainer {
     display: flex;
     height: 0.01em;
@@ -245,7 +290,7 @@ form.heading--Search_Form {
     line-height: 1.33;
     letter-spacing: 1px;
     text-transform: uppercase;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     text-align: center;
     padding-bottom: 16px;
 }
@@ -254,13 +299,14 @@ form.heading--Search_Form {
     margin: 0px;
     font-size: clamp(12px, calc(0.75rem + ((1vw - 4.14px) * 0.7082)), 17px);
     line-height: 1.41;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     font-weight: 400;
     text-align: center;
     padding-bottom: 24px;
 }
 
-.additionServiceCardContainer .card,.cardContainer .card:not(.checkBoxContainer) {
+.additionServiceCardContainer .card,
+.cardContainer .card:not(.checkBoxContainer) {
     position: relative;
     display: flex;
     -webkit-box-pack: justify;
@@ -277,45 +323,53 @@ form.heading--Search_Form {
     margin: 15px 0;
     cursor: pointer;
 }
-.additionServiceCardContainer .card.active,.cardContainer .card.active:not(.checkBoxContainer) {
-    
+
+.additionServiceCardContainer .card.active,
+.cardContainer .card.active:not(.checkBoxContainer) {
+
     border: 2px solid #C08428;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 7px 14px 0px;
 }
- .card p.title {
+
+.card p.title {
     margin: 0px;
-    font-size:clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
+    font-size: clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
     line-height: 1.4;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     color: #C08428;
     font-weight: 900;
 }
+
 .card p.subtitle {
     margin: 0px;
     font-size: clamp(12px, calc(0.75rem + ((1vw - 4.14px) * 0.2833)), 14px);
     line-height: 1.35;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     font-weight: 400;
     color: rgb(148, 158, 169);
 }
+
 .card .cardPrice {
     margin: 0px;
-    font-size:clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
+    font-size: clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
     line-height: 1.4;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     color: #C08428;
     font-weight: 900;
 }
+
 .containerRight .card-container {
-    border-radius: 0 0 20px 20px;
+    border-radius: 20px 20px;
     background-color: rgb(255, 255, 255);
-    box-shadow: rgba(0, 5, 82, 0.08) 0px 7px 14px 0px;
+    box-shadow: 3px 3px 20px #cecece, -3px -3px 12px #fff;
+    margin-top: 20px;
     margin-bottom: 32px;
     padding-bottom: 1px;
 }
+
 .containerRight .top-area {
     color: #fff;
     padding-top: 16px;
@@ -324,7 +378,9 @@ form.heading--Search_Form {
     pointer-events: all;
     padding-bottom: 15px;
     background-color: #C08428;
+    border-radius: 20px 20px 0 0;
 }
+
 .firstText h6 {
     margin: 0px;
     font-size: clamp(10px, calc(0.625rem + ((1vw - 4.14px) * 0.2833)), 12px);
@@ -332,24 +388,26 @@ form.heading--Search_Form {
     line-height: 1.33;
     letter-spacing: 1px;
     text-transform: uppercase;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     color: inherit;
 }
+
 .secondText h2 {
     font-size: clamp(30px, calc(1.875rem + ((1vw - 4.14px) * 1.4164)), 40px);
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     line-height: 1.4;
     text-align: end;
     margin: 0;
-    color:white;
+    color: white;
 }
+
 .thirdText p {
     text-align: end;
     margin: 0;
     margin: 0px;
     font-size: clamp(12px, calc(0.75rem + ((1vw - 4.14px) * 0.7082)), 17px);
     line-height: 1.41;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     font-weight: 400;
 }
 
@@ -361,7 +419,7 @@ form.heading--Search_Form {
     padding-bottom: 8px;
 }
 
-.containerRight table td:nth-child(2){
+.containerRight table td:nth-child(2) {
     text-align: right;
 }
 
@@ -369,24 +427,27 @@ form.heading--Search_Form {
     margin: 0px;
     font-size: clamp(12px, calc(0.75rem + ((1vw - 4.14px) * 0.7082)), 17px);
     line-height: 1.41;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     font-weight: 400;
 }
+
 table p.hour {
     margin: 0px;
     font-size: clamp(12px, calc(0.75rem + ((1vw - 4.14px) * 0.7082)), 17px);
     line-height: 1.41;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     font-weight: 400;
 }
+
 span.textContainer {
     margin: 0px;
     font-size: clamp(12px, calc(0.75rem + ((1vw - 4.14px) * 0.7082)), 17px);
     line-height: 1.41;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     font-weight: 400;
     padding-left: 16px;
 }
+
 span.queryText {
     font-size: 9px;
     border: 1px solid #c7c7c7;
@@ -398,9 +459,11 @@ span.queryText {
     text-align: center;
     border-radius: 50%;
 }
+
 tr.header-row {
     margin-bottom: 8px;
 }
+
 .bottom-bottom-area {
     margin-left: 12px;
     margin-right: 12px;
@@ -412,11 +475,12 @@ tr.header-row {
     padding-top: 24px;
     padding-bottom: 24px;
 }
-.tableTitle td{
+
+.tableTitle td {
     margin: 0px;
     font-size: clamp(12px, calc(0.75rem + ((1vw - 4.14px) * 0.2833)), 14px);
     line-height: 1.35;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     font-weight: 400;
 }
 
@@ -425,15 +489,18 @@ tr.rowThree.summery {
     margin-top: 16px;
     padding-top: 8px;
 }
-tr.rowThree td,tr.rowThree td a {
+
+tr.rowThree td,
+tr.rowThree td a {
     margin: 0px;
     font-size: clamp(12px, calc(0.75rem + ((1vw - 4.14px) * 0.2833)), 14px);
     line-height: 1.35;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     font-weight: 400;
     color: rgb(148, 158, 169);
     text-decoration: underline rgba(148, 158, 169, 0.4);
 }
+
 tr.rowFourth td {
     margin: 0px;
     font-size: clamp(10px, calc(0.625rem + ((1vw - 4.14px) * 0.2833)), 12px);
@@ -441,31 +508,35 @@ tr.rowFourth td {
     line-height: 1.33;
     letter-spacing: 1px;
     text-transform: uppercase;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
 }
+
 tr.rowFourth {
     padding-top: 10px;
 }
+
 ul.button-list {
     padding: 0;
     list-style: none;
     display: flex;
     justify-content: space-between;
 }
+
 ul.button-list li.activeButton {
     margin: 0px;
-    font-size:clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
+    font-size: clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
     line-height: 1.4;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     font-weight: 400;
     color: #C08428;
-    border-bottom-color:#C08428;
+    border-bottom-color: #C08428;
 }
+
 ul.button-list li {
     margin: 0px;
-    font-size:clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
+    font-size: clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
     line-height: 1.4;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     font-weight: 400;
     color: rgb(148, 158, 169);
     padding-bottom: 24px;
@@ -473,6 +544,7 @@ ul.button-list li {
     width: 100%;
     text-align: center;
 }
+
 .buttons {
     margin: auto 10px 48px;
 }
@@ -482,9 +554,10 @@ select#duration option {
     color: #21252b;
     padding-left: 16px;
 }
+
 select#duration {
     color: #21252b;
-    font-size:clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
+    font-size: clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
     padding-left: 16px;
     appearance: none;
     user-select: none;
@@ -503,12 +576,13 @@ select#duration {
     animation-name: mui-auto-fill-cancel;
     animation-duration: 10ms;
     padding: 16px 32px 16px 16px;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
 }
+
 .inputSelectFieldArea {
-    font-size:clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
+    font-size: clamp(14px, calc(0.875rem + ((1vw - 4.14px) * 0.8499)), 20px);
     line-height: 1.4375em;
-    font-family: 'Playfair Display','Georgia',"Times New Roman";
+    font-family: 'Playfair Display', 'Georgia', "Times New Roman";
     font-weight: 400;
     color: rgb(33, 37, 43);
     box-sizing: border-box;
@@ -522,9 +596,10 @@ select#duration {
     border: 1px solid rgb(218, 219, 227);
     border-radius: 8px;
     width: 100%;
-    margin-bottom: 48px;
+    margin-bottom: 10px;
 }
- img.formSelectFieldArrow {
+
+img.formSelectFieldArrow {
     user-select: none;
     width: 1em;
     height: 1em;
@@ -538,32 +613,38 @@ select#duration {
     pointer-events: none;
     color: rgba(0, 0, 0, 0.54);
 }
-.cardImageContainer img{
-        display: flex;
-            -webkit-box-align: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            justify-content: center;
-            flex: 0 0 80px;
-            width: 80px;
-            height: 80px;
-            border-radius: 10px;
-            background-color: rgb(179, 227, 242);
-            padding: 0px;
+
+.cardImageContainer img {
+    display: flex;
+    padding: 10px 20px !important;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex: 0 0 80px;
+    width: auto;
+    height: 60px;
+    border-radius: 10px;
+    background-color: #C08528;
+    padding: 0px;
 }
+
 .cardActiveTikMarkContainer {
     position: absolute;
     color: white;
     top: 16px;
     right: 3px;
 }
+
 .checkBoxContainer {
     display: flex;
 
 }
+
 .checkBoxContainer input {
     margin-right: 20px;
 }
+
 .checkBoxContainer label {
     font-size: clamp(12px, calc(0.75rem + ((1vw - 4.14px) * 0.7082)), 17px);
     color: #C08428;
@@ -573,7 +654,8 @@ select#duration {
     font-weight: 400;
     cursor: pointer;
 }
-.checkBoxContainer label span{
+
+.checkBoxContainer label span {
     margin: 0px;
     font-size: clamp(12px, calc(0.75rem + ((1vw - 4.14px) * 0.2833)), 14px);
     line-height: 1.35;
@@ -581,24 +663,29 @@ select#duration {
     font-weight: 400;
     color: rgb(148, 158, 169);
 }
+
 .oneTileServiceContainer p {
     margin: 0px;
     font-size: clamp(12px, calc(0.75rem + ((1vw - 4.14px) * 0.7082)), 17px);
     line-height: 1.41;
     font-family: "Nunito Sans", Helvetica, sans-serif;
     font-weight: 400;
-    padding:16px 0 15px;
+    padding: 16px 0 15px;
 }
-.previousNextButtonContainer{
+
+.previousNextButtonContainer {
     padding-top: 50px;
     display: flex;
 }
-.previousNextButtonContainer div{
+
+.previousNextButtonContainer div {
     width: 50%;
     display: flex;
     justify-content: end;
 }
-form.heading--Search_Form button ,.formContainer button {
+
+form.heading--Search_Form button,
+.formContainer button {
     display: inline-flex;
     -webkit-box-align: center;
     align-items: center;
@@ -621,7 +708,6 @@ form.heading--Search_Form button ,.formContainer button {
     font-size: clamp(12px, calc(0.75rem + ((1vw - 4.14px) * 0.5666)), 16px);
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     box-shadow: rgba(0, 5, 82, 0.08) 0px 7px 14px 0px;
-    width: 150px;
     color: rgb(255, 255, 255);
     background-color: #C08428;
     position: relative;
@@ -629,4 +715,44 @@ form.heading--Search_Form button ,.formContainer button {
     white-space: nowrap;
     padding: 12px 28px;
     min-width: 112px;
+}
+
+@media screen and (max-width: 580px) {
+    .inputFieldsWrapper.form_fields input {
+        width: 100% !important;
+    }
+}
+
+.bottom-area td {
+    border: none !important;
+}
+
+.bottom-area tr {
+    border-top: 1px solid #eee !important;
+}
+
+.bottom-area table {
+    border-top: none !important;
+}
+
+.dateTimerContainer {
+    padding-left: 16px;
+}
+
+.form_fields input[type="checkbox"] {
+    margin-bottom: 0px !important;
+}
+
+.errMessage,
+.errorSmsOnHeader {
+    background: rgba(255, 99, 71, 0.8);
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.petListRow td {
+    display: flex;
+    column-gap: 10px !important;
 }

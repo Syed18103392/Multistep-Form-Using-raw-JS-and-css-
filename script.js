@@ -4,19 +4,19 @@ const POST_CODE = [11115, 19794];
 const ECO_FRIENDLY_CLEANING_CHARGE = 39;
 const ServiceCardArr = [
     {
-        'title': 'A',
+        'title': 'Varje vecka',
         'oldPrice': 450,
         'newPrice': 225,
         'type': 'card'
     },
     {
-        'title': 'B',
+        'title': 'Varannan vecka',
         'oldPrice': 470,
         'newPrice': 235,
         'type': 'card'
     },
     {
-        'title': 'C',
+        'title': 'Var fjärde vecka',
         'oldPrice': 600,
         'newPrice': 300,
         'type': 'card'
@@ -105,12 +105,9 @@ const roundTheFractional = function (num) {
     return (Math.round(num * 100) / 100).toFixed(2);
 }
 //NOTE ERROR
-const error = function (x, y) {
-
+const showError = function (x, y) {
+    visibilityControl(document.querySelector(x), 'hidden');
     document.querySelector(x).innerHTML = y;
-    setInterval(function () {
-        document.querySelector(x).innerHTML = '';
-    }, 1000);
 }
 //NOTE calculation
 const calculation = function () {
@@ -118,18 +115,17 @@ const calculation = function () {
     serviceState.TOTAL = 0;
     serviceState.REGULAR_PRICE_TOTAL = 0;
 
-    // clean(bottomAreaRegularSummeryTitle);
-    // render(bottomAreaRegularSummeryTitle, `Städning ${serviceState.REGULAR_PRICE} kr/h × ${serviceState.CLEANING_DURATION + (serviceState.EXTRA_MINUTE / 60)} h`); clean(serviceCardTitleRow.querySelector('.hour'));
     if (serviceState.CURRENT_PRICE !== 0 && serviceState.SERVICE_TYPE == 'card') {
         serviceState.TOTAL = roundTheFractional(((cleaningDurationValue + (serviceState.EXTRA_MINUTE / 60)) * serviceState.CURRENT_PRICE) + ECO_FRIENDLY_CLEANING_CHARGE);
         serviceState.REGULAR_PRICE_TOTAL = roundTheFractional(((cleaningDurationValue + (serviceState.EXTRA_MINUTE / 60)) * serviceState.REGULAR_PRICE) + ECO_FRIENDLY_CLEANING_CHARGE);
-
     }
     if (serviceState.CURRENT_PRICE !== 0 && serviceState.SERVICE_TYPE === 'one_time') {
         serviceState.TOTAL = roundTheFractional(((cleaningDurationValue + (serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE / 60)) * serviceState.CURRENT_PRICE) + ECO_FRIENDLY_CLEANING_CHARGE);
         serviceState.REGULAR_PRICE_TOTAL = roundTheFractional(((cleaningDurationValue + (serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE / 60)) * serviceState.REGULAR_PRICE) + ECO_FRIENDLY_CLEANING_CHARGE);
 
     }
+    clean(bottomAreaRegularSummeryTitle);
+    render(bottomAreaRegularSummeryTitle, `Städning ${serviceState.REGULAR_PRICE} kr/h × ${serviceState.CLEANING_DURATION + (serviceState.EXTRA_MINUTE / 60)} h`);
     clean(totalPriceSelector);
     clean(totalRegularPriceSelector);
     clean(bottomAreaRegularSummeryPrice);
@@ -221,6 +217,7 @@ const generateButton = function () {
 
 //NOTE Control area input value
 const controlAreaInputFieldValueChange = function () {
+
     serviceState.APPARTMENT_SIZE = +areaInputField.value;
     serviceState.CLEANING_DURATION = RECOMENDENATION[between(serviceState.APPARTMENT_SIZE, APARTMENT_SIZE)];
     serviceState.EXTRA_MINUTE = (serviceState.CLEANING_DURATION > 3) ? 60 : 30;
@@ -228,6 +225,7 @@ const controlAreaInputFieldValueChange = function () {
     clean(cleaningDuration.querySelector('select'));
     render(cleaningDuration.querySelector('select'), generateDurationOptionsMarkup(serviceState.CLEANING_DURATION));
     clean(serviceCardTitleRow.querySelector('.hour'));
+    console.log('hoise=', serviceState.CLEANING_DURATION);
     render(serviceCardTitleRow.querySelector('.hour'), `${serviceState.CLEANING_DURATION.toString().replace('.', ',')} h`);
     console.log(serviceState);
     calculation();
@@ -237,6 +235,7 @@ const controlAreaInputFieldValueChange = function () {
 const controlCleaningDurationValueChange = function () {
     serviceState.CLEANING_DURATION = +cleaningDuration.querySelector('select').value;
     clean(serviceCardTitleRow.querySelector('.hour'));
+
     render(serviceCardTitleRow.querySelector('.hour'), `${serviceState.CLEANING_DURATION.toString().replace('.', ',')} h`);
     console.log(serviceState);
     calculation();
@@ -259,7 +258,7 @@ const generateTheServiceCard = function () {
     const radioType = ServiceCardArr.filter(el => el.type === 'one_time').map(function (el) {
         return `<div class="checkBoxContainer card" data-cardPrice = ${el.newPrice} data-cardOldPrice=${el.oldPrice} data-cardType=${el.type}>
                             <input type="radio" name="onetimeonly" id="one">
-                            <label for="one"><span class='title'>Endast en gång </span>(322.5 kr/h)<br><span>645 kr/h innan rutavdraget</span></label>
+                            <label for="one"><span class='title'>Endast en gång </span>(${el.newPrice} kr/h)<br><span>${el.oldPrice} kr/h innan rutavdraget</span></label>
                         </div>`
     }).join('');
 
@@ -274,7 +273,7 @@ const generateTheAdditionServiceCard = function () {
                                 </div>
                                 <div class="right">
                                     <div class="cardImageContainer">
-                                        <img src="https://www.drott24.se/wp-content/uploads/2022/06/freez.svg" alt="">
+                                        <img src="https://www.drott24.se/wp-content/uploads/2022/06/MicrosoftTeams-image-1.png" alt="">
                                     </div>
                                 </div>
                                 <div class="cardActiveTikMarkContainer hidden">
@@ -396,19 +395,39 @@ const controlPreviousNextButton = function (e) {
 
     //NOTE Control form submittion 
     if (btn.dataset.type === 'submit') {
-        const [petName] = Object.entries(serviceState).filter(el => el[0] === `PET_NAMES`);
-        const Others = Object.entries(serviceState).filter(el => el[0] !== `PET_NAMES`);
+        if (Array.from(document.querySelectorAll('input[required]')).map(el => el.value).includes('') !== true) {
+            Array.from(document.querySelectorAll('input[required]'))
+                .map(el => el.classList.value)
+                .forEach(function (el) {
+                    document.querySelector(`.${el}`).style.borderColor = 'rgb(218,219,227)'
+                });
+            const [petName] = Object.entries(serviceState).filter(el => el[0] === `PET_NAMES`);
+            const Others = Object.entries(serviceState).filter(el => el[0] !== `PET_NAMES`);
 
-        const Othersmarkup = Others.map(el => {
-            return `${el[0]} : ${el[1]} `;
-        }).join('\n');
-        const petNamesMarkup = petName[1].map(el => {
-            return `${el} `;
-        }).join(' , ');
-        const allData = `${Othersmarkup} PET_NAMES : ${petNamesMarkup}`;
-        document.querySelector('.finalAllDataArea').value = allData;
-        document.querySelector('.formFinalSubmit').click()
-        console.log(allData);
+            const Othersmarkup = Others.map(el => {
+                return `${el[0]} : ${el[1]} `;
+            }).join('\n');
+            const petNamesMarkup = petName[1].map(el => {
+                return `${el} `;
+            }).join(' , ');
+            const allData = `${Othersmarkup} PET_NAMES : ${petNamesMarkup}`;
+            document.querySelector('.finalAllDataArea').value = allData;
+            document.querySelector('.formFinalSubmit').click()
+            console.log(allData);
+        }
+        else {
+            Array.from(document.querySelectorAll('input[required]'))
+                .map(el => el.classList.value)
+                .forEach(function (el) {
+                    document.querySelector(`.${el}`).style.borderColor = 'rgb(218,219,227)'
+                });
+            Array.from(document.querySelectorAll('input[required]'))
+                .filter(el => el.value == '')
+                .map(el => el.classList.value)
+                .forEach(function (el) {
+                    document.querySelector(`.${el}`).style.borderColor = 'red'
+                })
+        }
     }
 }
 
@@ -431,6 +450,7 @@ const controlPetFromSubmission = function (e) {
         render(addressListPreview.querySelector('.addressPreview'), address);
         visibilityControl(document.querySelector('.correctDateTimeWarningBoard'), 'hidden', false);
         visibilityControl(document.querySelector('.inputFieldsForDateTimeWrapper'), 'hidden');
+        visibilityControl(document.querySelector('.errMessage'), 'hidden', false);
     }
     else {
         serviceState.ADDRESS = '';
@@ -442,7 +462,7 @@ const controlPetFromSubmission = function (e) {
         render(addressListPreview.querySelector('.addressPreview'), '');
         visibilityControl(document.querySelector('.correctDateTimeWarningBoard'), 'hidden');
         visibilityControl(document.querySelector('.inputFieldsForDateTimeWrapper'), 'hidden', false);
-        error('.errMessage', 'Please insert valid Address')
+        showError('.errMessage', 'Din adress verkar inte stämma')
     }
 }
 const petListControl = function (e) {
@@ -469,27 +489,60 @@ const petListControl = function (e) {
         serviceState.PET_NAMES = [];
         console.log(serviceState);
     }
-    if (e.target.closest('.cat--class input')) {
+    if (e.target.closest('.cat--class input') && serviceState.PET_NAMES.find(el => el === 'cat') === undefined) {
         visibilityControl(petListRow, 'hidden');
         visibilityControl(petListRow.querySelector(`.catName`), 'hidden');
         serviceState.PET_NAMES.push('cat');
-
+        console.log(serviceState.PET_NAMES)
     }
-    else if (e.target.closest('.dog--class input')) {
+    else if (e.target.closest('.cat--class input') && serviceState.PET_NAMES.find(el => el === 'cat') !== undefined) {
+        visibilityControl(petListRow, 'hidden');
+        visibilityControl(petListRow.querySelector(`.catName`), 'hidden', false);
+        serviceState.PET_NAMES.pop('cat');
+    }
+    else if (e.target.closest('.dog--class input') && serviceState.PET_NAMES.find(el => el === 'dog') === undefined) {
         visibilityControl(petListRow, 'hidden');
         visibilityControl(petListRow.querySelector(`.dogName`), 'hidden');
         serviceState.PET_NAMES.push('dog');
     }
-    else if (e.target.closest('.otherpet--class input')) {
+    else if (e.target.closest('.dog--class input') && serviceState.PET_NAMES.find(el => el === 'dog') !== undefined) {
+        visibilityControl(petListRow, 'hidden');
+        visibilityControl(petListRow.querySelector(`.dogName`), 'hidden', false);
+        serviceState.PET_NAMES.pop('dog');
+    }
+    else if (e.target.closest('.otherpet--class input') && serviceState.PET_NAMES.find(el => el === 'other pet') === undefined) {
         visibilityControl(petListRow, 'hidden');
         visibilityControl(petListRow.querySelector(`.otherpetName`), 'hidden');
         serviceState.PET_NAMES.push('other pet');
     }
+    else if (e.target.closest('.otherpet--class input') && serviceState.PET_NAMES.find(el => el === 'other pet') !== undefined) {
+        visibilityControl(petListRow, 'hidden');
+        visibilityControl(petListRow.querySelector(`.otherpetName`), 'hidden', false);
+        serviceState.PET_NAMES.pop('other pet');
+    }
     console.log(serviceState);
 }
 
+
+//NOTE Check header from submission 
+const checkHeadingFormValidation = function () {
+
+    const postcode = + document.querySelector('.input-post-code-for-service input.postcode').value.replaceAll(' ', '');
+    console.log(postcode);
+    if (between(postcode, POST_CODE) === 0 && postcode != 0) {
+        visibilityControl(document.querySelector('.errorSmsOnHeader'), 'hidden', false);
+        return true;
+    }
+    else {
+        visibilityControl(document.querySelector('.errorSmsOnHeader'), 'hidden');
+        showError('.errorSmsOnHeader', `Postnumret är ogiltligt,eller sà utför vi inte vâra tjänster dör för tillfället`)
+        return false;
+    }
+}
+
+
 //NOTE checkAddressAndActiveButton
-const checkAddressAndActiveButton = function(){
+const checkAddressAndActiveButton = function () {
     (document.querySelector('.addressinput').value !== '' && document.querySelector('.address--container .postcode') !== '') ? document.querySelector('.submit-pet').disabled = false : document.querySelector('.submit-pet').disabled = true;
 }
 
@@ -550,11 +603,7 @@ const formController = function () {
         clean(document.querySelector('span.p_date'));
         render(document.querySelector('span.p_date'), this.value);
     });
-    document.querySelector('.for_time').addEventListener('change', function () {
-        visibilityControl(document.querySelector('.dateTimePreview'), 'hidden');
-        clean(document.querySelector('span.p_time'));
-        render(document.querySelector('span.p_time'), this.value);
-    });
+
 }
 formController();
 
@@ -581,5 +630,6 @@ const init = function () {
     //     var txt = document.querySelector('.heading--Search_Form .postcode');
     //     txt.value = "165810" + txt.value;
     // });
+
 }
 init();

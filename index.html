@@ -9,17 +9,24 @@
 </head>
 <body>
     <div class="heading-form-container">
-        <form action="form.html" method="GET" class="heading--Search_Form" name="headingSearchForm" >
-            <div class="input-area-measurement inputFieldArea">
-                <input type="text" name="measurement" placeholder="area">
+        <form action="form.html" method="GET" class="heading--Search_Form" name="headingSearchForm" onsubmit="return checkHeadingFormValidation()" >
+            <div class="inputFieldArea form_fields input-area-measurement">
+                <input type="text" name="measurement" placeholder="område">
+                <div class="mesurementContainer">m²</div>
             </div>
             <div class="input-post-code-for-service inputFieldArea">
-                <input class="postcode" type="text" name="postcode" placeholder="postcode">
+                <input class="postcode" type="text" name="postcode" placeholder="postnummer">
             </div>
             <div class="submit-button-container">
-                <button type="submit">Submit</button>
+                <button type="submit">Räna ut</button>
             </div>
         </form>
+        <div class=" hidden errorSmsOnHeader"></div>
     </div>
+
+
+        <!-- //NOTE Load JS -->
+        
+        <script src="script.js"></script>
 </body>
 </html>
