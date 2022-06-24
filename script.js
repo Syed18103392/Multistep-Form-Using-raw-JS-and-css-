@@ -26,19 +26,41 @@ const ServiceCardArr = [
         'oldPrice': 650,
         'newPrice': 325,
         'type': 'one_time'
-    }
+    },
 ]
 
 const AdditionalServiceCardArr = [
     {
         'title': 'Kylskåp',
         'additional_minute': 30,
-    }
+        'url':'https://www.drott24.se/wp-content/uploads/2022/06/MicrosoftTeams-image-1.png',
+    },
+    {
+        'title': 'Ugn',
+        'additional_minute': 30,
+        'url':'https://www.drott24.se/wp-content/uploads/2022/06/Ugn.png',
+    },
+    {
+        'title': 'Köksskåp',
+        'additional_minute': 30,
+        'url':'https://www.drott24.se/wp-content/uploads/2022/06/Köksskåp.png',
+    },
+    {
+        'title': 'Fönsterputs',
+        'additional_minute': 30,
+        'url':'https://www.drott24.se/wp-content/uploads/2022/06/Fönsterputs.png',
+    },
+   
 ]
 
 
 //NOTE global value ;
 const serviceState = {
+    'USER_FIRST_NAME': '',
+    'USER_LAST_NAME': '',
+    'USER_EMAIL': '',
+    'USER_PHONE': '',
+    'USER_ID': '',
     'CURRENT_PRICE': 0,
     'REGULAR_PRICE': 0,
     'APPARTMENT_SIZE': 0,
@@ -48,12 +70,12 @@ const serviceState = {
     'REGULAR_PRICE_TOTAL': 0,
     'SERVICE_TITLE': '',
     'SERVICE_TYPE': '',
-    'ADDITIONAL_SERVICE_TITLE': '',
+    'ADDITIONAL_SERVICE_TITLE': [],
     'ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE': 0,
+    'NUMBER_OF_ADDITIONAL_SERVICE': 0,
     'ADDRESS': '',
     'POST_CODE': '',
-    'PET_NAMES': [],
-
+    'PET_NAMES': []
 }
 
 //NOTE Global Parent Element Selection
@@ -118,14 +140,17 @@ const calculation = function () {
     if (serviceState.CURRENT_PRICE !== 0 && serviceState.SERVICE_TYPE == 'card') {
         serviceState.TOTAL = roundTheFractional(((cleaningDurationValue + (serviceState.EXTRA_MINUTE / 60)) * serviceState.CURRENT_PRICE) + ECO_FRIENDLY_CLEANING_CHARGE);
         serviceState.REGULAR_PRICE_TOTAL = roundTheFractional(((cleaningDurationValue + (serviceState.EXTRA_MINUTE / 60)) * serviceState.REGULAR_PRICE) + ECO_FRIENDLY_CLEANING_CHARGE);
+        clean(bottomAreaRegularSummeryTitle);
+        render(bottomAreaRegularSummeryTitle, `Städning ${serviceState.REGULAR_PRICE} kr/h × ${serviceState.CLEANING_DURATION + (serviceState.EXTRA_MINUTE / 60)} h`); 
     }
     if (serviceState.CURRENT_PRICE !== 0 && serviceState.SERVICE_TYPE === 'one_time') {
         serviceState.TOTAL = roundTheFractional(((cleaningDurationValue + (serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE / 60)) * serviceState.CURRENT_PRICE) + ECO_FRIENDLY_CLEANING_CHARGE);
         serviceState.REGULAR_PRICE_TOTAL = roundTheFractional(((cleaningDurationValue + (serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE / 60)) * serviceState.REGULAR_PRICE) + ECO_FRIENDLY_CLEANING_CHARGE);
-
+        clean(bottomAreaRegularSummeryTitle);
+        render(bottomAreaRegularSummeryTitle, `Städning ${serviceState.REGULAR_PRICE} kr/h × ${ serviceState.CLEANING_DURATION + (serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE / 60)} h`);
     }
-    clean(bottomAreaRegularSummeryTitle);
-    render(bottomAreaRegularSummeryTitle, `Städning ${serviceState.REGULAR_PRICE} kr/h × ${serviceState.CLEANING_DURATION + (serviceState.EXTRA_MINUTE / 60)} h`);
+    // clean(bottomAreaRegularSummeryTitle);
+    // render(bottomAreaRegularSummeryTitle, `Städning ${serviceState.REGULAR_PRICE} kr/h × ${serviceState.CLEANING_DURATION + (serviceState.EXTRA_MINUTE / 60)} h`);
     clean(totalPriceSelector);
     clean(totalRegularPriceSelector);
     clean(bottomAreaRegularSummeryPrice);
@@ -264,21 +289,24 @@ const generateTheServiceCard = function () {
 
     return cardType + radioType;
 }
+
+//NOTE generate addi Service Card
 const generateTheAdditionServiceCard = function () {
     return AdditionalServiceCardArr.map(function (el) {
-        return `<div class="card" data-additionalminute=${el.additional_minute}>
+        return `<div class="card" data-additionalminute=${el.additional_minute} data-selected='false'>
                                 <div class="left">
                                     <p class="title">${el.title}</p>
                                     <p class="subtitle">+${el.additional_minute} min</p>
                                 </div>
                                 <div class="right">
                                     <div class="cardImageContainer">
-                                        <img src="https://www.drott24.se/wp-content/uploads/2022/06/MicrosoftTeams-image-1.png" alt="">
+                                        <img src="${el.url}" alt="">
                                     </div>
                                 </div>
                                 <div class="cardActiveTikMarkContainer hidden">
                                     <img src="https://www.drott24.se/wp-content/uploads/2022/06/tikmark.svg" alt="">
-                                </div>`
+                                </div>
+                </div>`
     }).join('');
 
 }
@@ -286,7 +314,7 @@ const generateTheAdditionServiceCard = function () {
 
 
 
-//NOTE Service card selection
+//NOTE Control Service card selection
 const controlServiceCardSelection = function (e) {
     console.log(this.querySelector('input').checked = false);
     if (serviceState.APPARTMENT_SIZE === 0) return;
@@ -302,12 +330,14 @@ const controlServiceCardSelection = function (e) {
     clean(ecoFriendlyCleaningSupplies);
     clean(bottomAreaRegularSummeryTitle);
     if (serviceState.SERVICE_TYPE === 'card') {
+        console.log(serviceState);
         visibilityControl(featureArea, 'hidden');
         clean(summeryServiceTItle);
         render(summeryServiceTItle, serviceState.SERVICE_TITLE);
         visibilityControl(extraServiceContainer, 'hidden', false);
         clean(bottomAreaRegularSummeryTitle);
-        render(bottomAreaRegularSummeryTitle, `Städning ${serviceState.REGULAR_PRICE} kr/h × ${serviceState.CLEANING_DURATION + (serviceState.EXTRA_MINUTE / 60)} h`); clean(serviceCardTitleRow.querySelector('.hour'));
+        render(bottomAreaRegularSummeryTitle, `Städning ${serviceState.REGULAR_PRICE} kr/h × ${serviceState.CLEANING_DURATION + (serviceState.EXTRA_MINUTE / 60)} h`); 
+        clean(serviceCardTitleRow.querySelector('.hour'));
         render(serviceCardTitleRow.querySelector('.hour'), `${serviceState.CLEANING_DURATION.toString().replace('.', ',')} h`);
     }
     if (serviceState.SERVICE_TYPE === 'one_time') {
@@ -338,11 +368,12 @@ const controlServiceCardSelection = function (e) {
 }
 //NOTE control addtional servivice
 const controlAdditionalServiceCardSelection = function (e) {
-    if (serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE === 0) {
+    if (e.target.closest('.card') && e.target.closest('.card').dataset.selected==='false') {
         serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE;
         const card = e.target.closest('.card');
-        serviceState.ADDITIONAL_SERVICE_TITLE = card.querySelector('.title').innerText;
-        serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE = +card.dataset.additionalminute;
+        card.dataset.selected = 'true'
+        serviceState.ADDITIONAL_SERVICE_TITLE.push(card.querySelector('.title').innerText);
+        serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE += (+card.dataset.additionalminute);
         const cardActiveTikMarkContainer = card.querySelector('.cardActiveTikMarkContainer');
         visibilityControl(cardActiveTikMarkContainer, 'hidden');
         visibilityControl(card, 'active', false);
@@ -351,19 +382,33 @@ const controlAdditionalServiceCardSelection = function (e) {
         console.log(serviceState);
         calculation();
     }
-    else if (serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE !== 0) {
+    else if (e.target.closest('.card') && e.target.closest('.card').dataset.selected === 'true') {
         serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE;
         const card = e.target.closest('.card');
-        serviceState.ADDITIONAL_SERVICE_TITLE = '';
-        serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE = 0;
+        card.dataset.selected = 'false';
+        serviceState.ADDITIONAL_SERVICE_TITLE.pop(card.querySelector('.title').innerText);
+        serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE -= (+card.dataset.additionalminute);
         const cardActiveTikMarkContainer = card.querySelector('.cardActiveTikMarkContainer');
-        visibilityControl(cardActiveTikMarkContainer, 'hidden', false);
+        visibilityControl(cardActiveTikMarkContainer, 'hidden',false);
         visibilityControl(card, 'active');
         clean(serviceCardTitleRow.querySelector('.hour'));
         render(serviceCardTitleRow.querySelector('.hour'), `${(serviceState.CLEANING_DURATION + (serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE / 60)).toString().replace('.', ',')} h`);
         console.log(serviceState);
         calculation();
     }
+    // else if (serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE !== 0) {
+    //     serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE;
+    //     const card = e.target.closest('.card');
+    //     serviceState.ADDITIONAL_SERVICE_TITLE = '';
+    //     serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE = 0;
+    //     const cardActiveTikMarkContainer = card.querySelector('.cardActiveTikMarkContainer');
+    //     visibilityControl(cardActiveTikMarkContainer, 'hidden', false);
+    //     visibilityControl(card, 'active');
+    //     clean(serviceCardTitleRow.querySelector('.hour'));
+    //     render(serviceCardTitleRow.querySelector('.hour'), `${(serviceState.CLEANING_DURATION + (serviceState.ADDITIONAL_MINUTE_FOR_ADDITIONAL_SERVICE / 60)).toString().replace('.', ',')} h`);
+    //     console.log(serviceState);
+    //     calculation();
+    // }
 }
 
 //NOTE Control PreviousNextButton
@@ -401,6 +446,11 @@ const controlPreviousNextButton = function (e) {
                 .forEach(function (el) {
                     document.querySelector(`.${el}`).style.borderColor = 'rgb(218,219,227)'
                 });
+            serviceState.USER_FIRST_NAME = document.querySelector('input.form_firstName').value;
+            serviceState.USER_LAST_NAME = document.querySelector('input.form_lastName').value;
+            serviceState.USER_EMAIL = document.querySelector('input.form_email').value;
+            serviceState.USER_PHONE = document.querySelector('input.form_phone').value;
+            serviceState.USER_ID = document.querySelector('input.form_personalIdentity').value;
             const [petName] = Object.entries(serviceState).filter(el => el[0] === `PET_NAMES`);
             const Others = Object.entries(serviceState).filter(el => el[0] !== `PET_NAMES`);
 
